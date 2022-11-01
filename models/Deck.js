@@ -16,6 +16,11 @@ Deck.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    is_public: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
