@@ -19,7 +19,7 @@ Deck.init(
     is_public: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: true,
+      defaultValue: false,
     },
     user_id: {
       type: DataTypes.INTEGER,
