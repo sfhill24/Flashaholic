@@ -1,14 +1,14 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-
 const { User, Deck, Card, Favorite } = require("../models");
+const withAuth = require("../middleware/isAuthenticated");
 
-router.get("/", (req, res) => {
+router.get("/", withAuth, (req, res) => {
   console.log(req.session);
 
   Deck.findAll({
     where: {
-      is_public: true,
+      user_id: req.session.id,
     },
     attributes: [
       "id",
@@ -40,9 +40,9 @@ router.get("/", (req, res) => {
   })
     .then((dbDeckData) => {
       const decks = dbDeckData.map((deck) => deck.get({ plain: true }));
-      res.render("homepage", {
+      res.render("dashboard", {
         decks,
-        loggedIn: req.session.loggedIn,
+        loggedIn: true,
       });
     })
     .catch((err) => {
@@ -51,11 +51,8 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/deck/:id", (req, res) => {
-  Deck.findOne({
-    where: {
-      id: req.params.id,
-    },
+router.get("/edit/:id", withAuth, (req, res) => {
+  Deck.findByPk(req.params.id, {
     attributes: [
       "id",
       "title",
@@ -85,32 +82,23 @@ router.get("/deck/:id", (req, res) => {
     ],
   })
     .then((dbDeckData) => {
-      if (!dbDeckData) {
-        res.status(404).json({ message: "No deck found with this id" });
-        return;
+      if (dbDeckData) {
+        // serialize the data
+        const deck = dbDeckData.get({ plain: true });
+
+        // pass data to template
+        res.render("edit-deck", {
+          deck,
+          loggedIn: true,
+        });
+      } else {
+        res.status(404).end();
       }
-
-      // serialize the data
-      const deck = dbDeckData.get({ plain: true });
-
-      // pass data to template
-      res.render("single-deck", {
-        deck,
-        loggedIn: req.session.loggedIn,
-      });
     })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
-});
-
-router.get("/login", (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect("/");
-    return;
-  }
-  res.render("login");
 });
 
 module.exports = router;
