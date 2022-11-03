@@ -31,7 +31,7 @@ Favorite.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "deck",
+    modelName: "favorite",
   }
 );
 
