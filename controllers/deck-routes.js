@@ -1,9 +1,10 @@
 const router = require("express").Router();
+const isAuthenticated = require("../middleware/isAuthenticated");
 const { Card, Deck, Favorite, User } = require("../models");
 
 
 //GET all decks and render  availableDecks page
-router.get('/', withAuth, async (req, res) => {
+router.get('/', isAuthenticated, async (req, res) => {
     try {
         let allDecks = await Deck.findAll({
             attributes: [
@@ -21,7 +22,7 @@ router.get('/', withAuth, async (req, res) => {
 
 
 //Render create deck page
-router.get('/create', withAuth, async (req, res) => {
+router.get('/create', isAuthenticated, async (req, res) => {
     try {
         res.render("createDeck", { loggedIn: true });
     } catch (err) {
@@ -31,7 +32,7 @@ router.get('/create', withAuth, async (req, res) => {
 })
 
 //GET deck and render flashcard page
-router.get('/flashcard', withAuth, async (req, res) => {
+router.get('/flashcard', isAuthenticated, async (req, res) => {
     try {
         let flashcard = await Deck.findAll({
             attributes: [
@@ -53,7 +54,7 @@ router.get('/flashcard', withAuth, async (req, res) => {
 })
 
 //GET all user created and favorite decks and render my decks page
-router.get('/myDecks', withAuth, async (req, res) => {
+router.get('/myDecks', isAuthenticated, async (req, res) => {
     try {
         let myDecks = await Deck.findAll({
             attributes: [
