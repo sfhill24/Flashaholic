@@ -43,7 +43,7 @@ router.post("/signUp", async (req, res) => {
     req.session.save(() => {
       req.session.isAuthenticated = true;
       req.session.currentUser = user;
-      res.status(200).redirect('/');
+      res.status(200).json(user);
     });
   } catch (err) {
     console.log(err);
@@ -82,13 +82,13 @@ router.post("/login", async (req, res) => {
     req.session.save(() => {
       req.session.isAuthenticated = true;
       req.session.currentUser = user;
-      res.status(200).redirect('/');
+      res.status(200).json({ user, message: 'You are now logged in!' });
     });
 
 
   } catch (err) {
     console.log(err);
-    res.status(500).render(500);
+    res.status(500).json(err);
   }
 })
 

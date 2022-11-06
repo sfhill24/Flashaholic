@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { Card, Deck, Favorite, User } = require("../../models");
 
 //POST decks to favorites when save button is clicked
-router.post("/:id/favorites", withAuth, async (req, res) => {
+router.post("/:id/favorites", isAuthenticated, async (req, res) => {
     try {
         let favoriteDeck = await Favorite.create({
             deck_id: req.params.id,
@@ -18,7 +18,7 @@ router.post("/:id/favorites", withAuth, async (req, res) => {
 })
 
 //POST deck once created
-router.post("/", withAuth, async (req, res) => {
+router.post("/", isAuthenticated, async (req, res) => {
     try {
         let createDeck = await Deck.create({
             title: req.body.title,
@@ -34,7 +34,7 @@ router.post("/", withAuth, async (req, res) => {
 })
 
 //DELETE created deck 
-router.delete("/:id", withAuth, async (req, res) => {
+router.delete("/:id", isAuthenticated, async (req, res) => {
     try {
         let deleteCreatedDeck = await Deck.destroy({
             where: {
@@ -55,7 +55,7 @@ router.delete("/:id", withAuth, async (req, res) => {
 
 
 //DELETE favorite deck
-router.delete("/:id", withAuth, async (req, res) => {
+router.delete("/:id", isAuthenticated, async (req, res) => {
     try {
         let deleteFavoriteDeck = await Favorite.destroy({
             where: {
