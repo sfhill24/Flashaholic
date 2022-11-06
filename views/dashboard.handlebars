@@ -1,0 +1,12 @@
+<section class="container">
+    {{#if decks.length}}
+        <h2>Your Decks</h2>
+        <div class="row">
+            {{#each decks as |deck|}}
+                {{>deck-partial deck}}
+            {{/each}}
+        </div>
+    {{else}}
+        <h2>You have not created any decks</h2>
+    {{/if}}
+</section>

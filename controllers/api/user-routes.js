@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { User, Deck, Card } = require("../../models");
-//const withAuth = require("../../utils/auth");
+const withAuth = require("../../middleware/isAuthenticated");
 
 // GET /api/users
 router.get("/", (req, res) => {
@@ -49,7 +49,7 @@ router.post("/signUp", async (req, res) => {
     console.log(err);
     res.status(500).json(err);
   }
-})
+});
 
 //User login route
 router.post("/login", async (req, res) => {
@@ -59,10 +59,12 @@ router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({
       where: { username },
-      attributes: { exclude: ['created_at, update_at'] },
+      attributes: { exclude: ["created_at, update_at"] },
     });
     if (!user) {
-      res.status(400).json({ message: "Incorrect email or password. Please try again!" })
+      res
+        .status(400)
+        .json({ message: "Incorrect email or password. Please try again!" });
     }
 
     const validPassword = await user.checkPassword(password);
@@ -70,7 +72,7 @@ router.post("/login", async (req, res) => {
     if (!validPassword) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password. Please try again!' });
+        .json({ message: "Incorrect email or password. Please try again!" });
       return;
     }
 
@@ -79,15 +81,13 @@ router.post("/login", async (req, res) => {
     req.session.save(() => {
       req.session.isAuthenticated = true;
       req.session.currentUser = user;
-      res.status(200).json({ user, message: 'You are now logged in!' });
+      res.status(200).json({ user, message: "You are now logged in!" });
     });
-
-
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
-})
+});
 
 //Logout route
 router.post("/logout", (req, res) => {
@@ -98,8 +98,6 @@ router.post("/logout", (req, res) => {
   } else {
     res.status(404).end();
   }
-})
-
-
+});
 
 module.exports = router;
