@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { User, Deck, Card } = require("../../models");
-const withAuth = require("../middleware/isAuthenticated");
+const withAuth = require("../../middleware/isAuthenticated");
 
 // GET /api/users
 router.get("/", (req, res) => {

@@ -8,7 +8,7 @@ router.get("/", withAuth, (req, res) => {
 
   Deck.findAll({
     where: {
-      user_id: req.session.id,
+      user_id: req.session.currentUser.id,
     },
     attributes: [
       "id",
