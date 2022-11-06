@@ -42,7 +42,7 @@ router.get("/", (req, res) => {
       const decks = dbDeckData.map((deck) => deck.get({ plain: true }));
       res.render("homepage", {
         decks,
-        loggedIn: req.session.loggedIn,
+        loggedIn: req.session.isAuthenticated,
       });
     })
     .catch((err) => {
@@ -96,7 +96,7 @@ router.get("/deck/:id", (req, res) => {
       // pass data to template
       res.render("single-deck", {
         deck,
-        loggedIn: req.session.loggedIn,
+        loggedIn: req.session.isAuthenticated,
       });
     })
     .catch((err) => {
@@ -106,7 +106,7 @@ router.get("/deck/:id", (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.isAuthenticated) {
     res.redirect("/");
     return;
   }

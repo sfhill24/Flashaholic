@@ -1,0 +1,15 @@
+<div class="card text-center col-12 col-md-4">
+    <div class="card-body">
+        <h3 class="card-title">
+            {{title}}
+        </h3>
+        <p class="card-text">
+            {{cards.length}} {{format_plural "card" cards.length}} in this Deck
+        </p>
+        <p class="card-text">
+            Created on {{format_date created_at}}
+        </p>
+        <a href="/deck/{{id}}" class="btn btn-primary">Edit Deck</a>
+        <button class="btn btn-primary">Delete deck</button>
+    </div>
+</div>
