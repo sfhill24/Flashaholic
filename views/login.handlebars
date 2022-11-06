@@ -1,0 +1,20 @@
+<form method="POST" action="/api/users/login" enctype="application/json" class="d-flex justify-content-around" id="loginForm">
+    <div class="border border-primary rounded p-4 m-3">
+        <h2 class="text-center m-2">Login</h3>
+        <div class="form-group m-2">
+            <label id="username">Username</label>
+            <input type="text" name="username" class="form-control">
+        </div>
+        <div class="form-group m-2">
+            <label id="password">Password</label>
+            <input type="password" name="password" class="form-control">
+        </div>
+        <div class="text-center">
+            <input type="submit" value="Submit"/>
+        </div>
+        <br>
+        <div>
+            <label>Don't have an account? <a href="/signup">Register Here</a></label>
+        </div>
+    </div>
+</form>
