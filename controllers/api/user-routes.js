@@ -23,7 +23,7 @@ router.get("/", (req, res) => {
     .then((dbUserData) => res.json(dbUserData))
     .catch((err) => {
       console.log(err);
-      res.status(500).render(500);
+      res.status(500).json(err);
     });
 });
 
@@ -47,7 +47,7 @@ router.post("/signUp", async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    res.status(500).render(500);
+    res.status(500).json(err);
   }
 })
 
@@ -55,9 +55,6 @@ router.post("/signUp", async (req, res) => {
 router.post("/login", async (req, res) => {
   const password = req.body.password;
   const username = req.body.username;
-
-  console.log(username);
-  console.log(password);
 
   try {
     const user = await User.findOne({
