@@ -5,9 +5,13 @@ const withAuth = require("../middleware/isAuthenticated");
 //GET all decks and render  availableDecks page
 router.get("/", withAuth, async (req, res) => {
   try {
-    let allDecks = await Deck.findAll({
+    let dbAllDecks = await Deck.findAll({
+      where: { is_public: true },
+
       attributes: ["id", "title", "is_public"],
     });
+
+    const allDecks = dbAllDecks.map(x => x.get({ plain: true }));
     res.render("availableDecks", { allDecks, loggedIn: true });
   } catch (err) {
     console.log(err);
@@ -28,7 +32,7 @@ router.get("/create", withAuth, async (req, res) => {
 //GET deck and render flashcard page
 router.get("/flashcard", withAuth, async (req, res) => {
   try {
-    let flashcard = await Deck.findAll({
+    let dbFlashcard = await Deck.findAll({
       attributes: ["id", "title"],
       include: [
         {
@@ -37,6 +41,7 @@ router.get("/flashcard", withAuth, async (req, res) => {
         },
       ],
     });
+   
     res.render("flashcard", { flashcard, loggedIn: true });
   } catch (err) {
     console.log(err);
