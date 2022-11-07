@@ -1,0 +1,21 @@
+<section class="container">
+    {{#if allDecks.length}}
+    <div class="row">
+        {{#each allDecks}}
+        <div class="card text-center col-12 col-md-4 mx-2 px-0">
+            <div class="card-header">
+                <h3>{{this.title}}</h3>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    {{allDecks.length}} {{format_plural "card" allDecks.length}} in this Deck
+                </p>
+                <a href="/deck/create/{{id}}" class="btn btn-primary">Save to My Decks</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{else}}
+    <h2>There are no decks available at this time.</h2>
+    {{/if}}
+</section>
