@@ -12,4 +12,8 @@ module.exports = {
 
     return word;
   },
+
+  inc: (value, options) => {
+    return parseInt(value) + 1;
+  },
 };
