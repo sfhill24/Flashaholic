@@ -7,7 +7,7 @@ router.post("/:id/favorites", withAuth, async (req, res) => {
   try {
     let favoriteDeck = await Favorite.create({
       deck_id: req.params.id,
-      user_id: req.session.user_id,
+      user_id: req.session.currentUser.id
     });
 
     res.json(favoriteDeck);

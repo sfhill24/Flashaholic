@@ -40,7 +40,6 @@ async function createDeck(event) {
 const addCard = async () => {
   event.preventDefault();
 
-
   const question = document.querySelector('input[name="front_text"]').value;
   const answer = document.querySelector('input[name="back_text"]').value;
 
@@ -55,7 +54,6 @@ const addCard = async () => {
 </div>`
 
   document.querySelector('#listOfCards').appendChild(cardListDiv);
-
 }
 
 document.querySelector('#createDeck').addEventListener('submit', createDeck);
