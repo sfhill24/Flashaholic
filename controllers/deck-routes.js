@@ -41,7 +41,7 @@ router.get("/flashcard", withAuth, async (req, res) => {
         },
       ],
     });
-   
+    const flashcard = dbFlashcard.map(x => x.get({ plain: true }));
     res.render("flashcard", { flashcard, loggedIn: true });
   } catch (err) {
     console.log(err);
