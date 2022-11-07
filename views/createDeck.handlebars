@@ -1,58 +1,50 @@
-
 <section>
-<form>
-<!--  Deck name with text box--->
-<!--Private/public check box-->
-  <div class="input-group">
-    <input id="deckName" type="text" class="form-control" placeholder="Deck Name" aria-label="Deck Name" aria-describedby="btnGroupAddon">
-  </div>
+  <form id="createDeck">
+    <!--Deck name with text box--->
+    <!--Private/public check box-->
+    <div class="input-group">
+      <input name="title" type="text" class="form-control" placeholder="Deck Name" aria-label="Deck Name"
+        aria-describedby="btnGroupAddon">
+    </div>
 
-</div>
+    </div>
 
-<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-  <label class="btn btn-outline-primary" for="btnradio1">Radio 1</label>
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+      <input type="radio" class="btn-check" name="is_public" id="btnradio1" autocomplete="off">
+      <label class="btn btn-outline-primary" for="btnradio1">Public</label>
 
-  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-  <label class="btn btn-outline-primary" for="btnradio2">Radio 2</label>
+      <input type="radio" class="btn-check" name="is_public" id="btnradio2" autocomplete="off" checked>
+      <label class="btn btn-outline-primary" for="btnradio2">Private</label>
 
-</div>
- 
+    </div>
 
-<!--Question/Answer textbox-->
-<div class="input-group flex-nowrap">
-  <input id="question" type="text" class="form-control" placeholder="Question" aria-label="Answer" aria-describedby="addon-wrapping">
-</div>
+    <!--Question/Answer textbox-->
+    <div class="input-group flex-nowrap">
+      <input name="front_text" type="text" class="form-control" placeholder="Question" aria-label="Answer"
+        aria-describedby="addon-wrapping">
+    </div>
 
-<div class="input-group flex-nowrap">
-  <input id="question" type="text" class="form-control" placeholder="Answer" aria-label="Answer" aria-describedby="addon-wrapping">
-</div>
+    <div class="input-group flex-nowrap">
+      <input name="back_text" type="text" class="form-control" placeholder="Answer" aria-label="Answer"
+        aria-describedby="addon-wrapping">
+    </div>
 
-<!--Add card button-->
-<button id="addCardBtn" type="button" class="btn btn-primary">Add Card</button>
+    <!--Add card button-->
+    <button id="addCardBtn" type="button" class="btn btn-primary">Add Card</button>
 
-<!--list of cards layout (append)-->
-<div id="listOfCards">
-<div><div class="input-group flex-nowrap">
-  <input id="cardQuestion" type="text" class="form-control" placeholder="Question" aria-label="Answer" aria-describedby="addon-wrapping">
-</div>
-
-<div class="input-group flex-nowrap">
-  <input id="cardAnswer" type="text" class="form-control" placeholder="Answer" aria-label="Answer" aria-describedby="addon-wrapping">
-</div>
-</div>
+    <!--list of cards layout (append)-->
+    <div id="listOfCards">
 
 
+    </div>
 
-</div>
+    <!--Delete card button-->
+    <i id="deleteCard" class="fa-solid fa-trash-can"></i>
 
-<!--Delete card button-->
-<i id="deleteCard" class="fa-solid fa-trash-can"></i>
+    <!--Save button -->
+    <input type="submit" class="btn btn-primary" value="Save Deck" />
 
-<!--Save button -->
-<button id="saveDeck" type="button" class="btn btn-primary">Save Deck</button>
-
-</form>
+  </form>
 
 </section>
-<script scr="/javascript/create-deck.js"></script>
+<script src="/javascript/createDeck.js"></script>

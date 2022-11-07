@@ -23,8 +23,17 @@ router.post("/", withAuth, async (req, res) => {
     let createDeck = await Deck.create({
       title: req.body.title,
       is_public: req.body.is_public,
-      user_id: req.session.user_id,
+      user_id: req.session.currentUser.id
     });
+
+    for (let i = 0; i < req.body.cards.length; i++ ) {
+      req.body.cards[i].deck_id = createDeck.id;
+    }
+
+    let cards = await Card.bulkCreate(req.body.cards);
+
+    createDeck.cards = cards;
+
     res.json(createDeck);
   } catch (err) {
     console.log(err);
