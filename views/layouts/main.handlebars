@@ -34,10 +34,11 @@
 
     {{{body}}}
 
-  <script src="/javascript/logout.js"></script>
+  {{#if session.isAuthenticated}}
+    <script src="/javascript/logout.js"></script>
+  {{/if}}
+
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script> 
+  <script src="//cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
-  

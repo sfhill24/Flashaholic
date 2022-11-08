@@ -19,6 +19,7 @@ Card.belongsTo(User, {
 
 Card.belongsTo(Deck, {
   foreignKey: "deck_id",
+  onDelete: "CASCADE",
 });
 
 User.hasMany(Card, {
