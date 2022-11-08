@@ -32,7 +32,7 @@ router.get("/create", withAuth, async (req, res) => {
 //GET deck and render flashcard page
 router.get("/:id/flashcard", withAuth, async (req, res) => {
   try {
-    let dbFlashcard = await Deck.findByPk({
+    let dbFlashcard = await Deck.findAll({
       where: {
         id: req.params.id,
       },
