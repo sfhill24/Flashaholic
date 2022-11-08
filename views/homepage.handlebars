@@ -91,12 +91,18 @@
 <div class="homepage-container container mt-4">
     {{#if decks.length}}
         {{#each decks}}
-        <input type="radio" name="slider" id="item-{{inc @index}}" checked>
+        <input type="radio" name="slider" id="item-{{inc @index}}" {{#if (is_zero @index)}}checked{{/if}}>
         {{/each}}
         <div class="cards">
             {{#each decks as |deck|}}
             <label class="homepage-card card" for="item-{{inc @index}}" id="deck-{{inc @index}}">
-                {{>deck-partial deck}}
+                <div class="card-header">
+                    {{title}}
+                </div>
+                <p class="card-text">
+                    Created on {{format_date created_at}}
+                </p>
+                <a href="/deck/{{id}}">View Deck</a>
             </label>
             {{/each}}
         </div>

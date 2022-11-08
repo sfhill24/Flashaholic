@@ -11,7 +11,7 @@ router.get("/", withAuth, async (req, res) => {
       attributes: ["id", "title", "is_public"],
     });
 
-    const allDecks = dbAllDecks.map(x => x.get({ plain: true }));
+    const allDecks = dbAllDecks.map((x) => x.get({ plain: true }));
     res.render("availableDecks", { allDecks, loggedIn: true });
   } catch (err) {
     console.log(err);
@@ -30,9 +30,12 @@ router.get("/create", withAuth, async (req, res) => {
 });
 
 //GET deck and render flashcard page
-router.get("/flashcard", withAuth, async (req, res) => {
+router.get("/:id/flashcard", withAuth, async (req, res) => {
   try {
-    let dbFlashcard = await Deck.findAll({
+    let dbFlashcard = await Deck.findByPk({
+      where: {
+        id: req.params.id,
+      },
       attributes: ["id", "title"],
       include: [
         {
@@ -41,7 +44,7 @@ router.get("/flashcard", withAuth, async (req, res) => {
         },
       ],
     });
-    const flashcard = dbFlashcard.map(x => x.get({ plain: true }));
+    const flashcard = dbFlashcard.map((x) => x.get({ plain: true }));
     res.render("flashcard", { flashcard, loggedIn: true });
   } catch (err) {
     console.log(err);

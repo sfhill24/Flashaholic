@@ -15,9 +15,11 @@
     transition: background 0.4s ease-in;
     background-color: #c394f8;
   
-    &.blue {
-      background-color: #428aa6;
-    }
+  }
+
+  
+  .blue {
+    background-color: #428aa6;
   }
   
   input[type="radio"] {
@@ -61,25 +63,25 @@
     object-fit: cover;
   }
   
-  #item-1:checked ~ .cards #song-3,
-  #item-2:checked ~ .cards #song-1,
-  #item-3:checked ~ .cards #song-2 {
+  #item-1:checked ~ .cards #deck-3,
+  #item-2:checked ~ .cards #deck-1,
+  #item-3:checked ~ .cards #deck-2 {
     transform: translatex(-40%) scale(0.8);
     opacity: 0.4;
     z-index: 0;
   }
   
-  #item-1:checked ~ .cards #song-2,
-  #item-2:checked ~ .cards #song-3,
-  #item-3:checked ~ .cards #song-1 {
+  #item-1:checked ~ .cards #deck-2,
+  #item-2:checked ~ .cards #deck-3,
+  #item-3:checked ~ .cards #deck-1 {
     transform: translatex(40%) scale(0.8);
     opacity: 0.4;
     z-index: 0;
   }
   
-  #item-1:checked ~ .cards #song-1,
-  #item-2:checked ~ .cards #song-2,
-  #item-3:checked ~ .cards #song-3 {
+  #item-1:checked ~ .cards #deck-1,
+  #item-2:checked ~ .cards #deck-2,
+  #item-3:checked ~ .cards #deck-3 {
     transform: translatex(0) scale(1);
     opacity: 1;
     z-index: 1;

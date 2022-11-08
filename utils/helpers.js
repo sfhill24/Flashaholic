@@ -16,4 +16,8 @@ module.exports = {
   inc: (value, options) => {
     return parseInt(value) + 1;
   },
+
+  is_zero: (value) => {
+    return value === 0;
+  },
 };
