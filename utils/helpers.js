@@ -1,6 +1,6 @@
-Handlebars.registerHelper('json', function (content) {
-  return JSON.stringify(content);
-});
+//Handlebars.registerHelper('json', function (content) {
+  //return JSON.stringify(content);
+//});
 
 module.exports = {
   format_date: (date) => {
