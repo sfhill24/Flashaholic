@@ -51,23 +51,24 @@ router.get("/create", withAuth, async (req, res) => {
 //     res.status(500).json(err);
 //   }
 // });
-router.get("/:id/flashcard", withAuth, async (req, res) => {
+router.get("/:id", withAuth, async (req, res) => {
   try {
     let dbFlashcard = await Deck.findAll({
       where: {
-        deck_id: req.params.id,
+        id: req.params.id,
       },
+      attributes: ["id", "title"],
       include: [
         {
-          model: Deck,
-        },
-        {
-          model: User,
+          model: Card,
+          attributes: ["id", "user_id", "deck_id", "front_text", "back_text"],
         },
       ],
     });
-    const flashcard = dbFlashcard.map((x) => x.get({ plain: true }));
-    res.render("flashcard", { flashcard, loggedIn: true });
+    const flashcards = dbFlashcard.dataValues.cards.map((x) => x.get({ plain: true }));
+    
+    res.render("flashcard", { flashcards , loggedIn: true });
+
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
