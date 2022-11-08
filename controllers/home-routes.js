@@ -94,7 +94,7 @@ router.get("/deck/:id", (req, res) => {
       const deck = dbDeckData.get({ plain: true });
 
       // pass data to template
-      res.render("single-deck", {
+      res.render("flashcard", {
         deck,
         loggedIn: req.session.isAuthenticated,
       });

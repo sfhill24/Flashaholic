@@ -30,17 +30,39 @@ router.get("/create", withAuth, async (req, res) => {
 });
 
 //GET deck and render flashcard page
+// router.get("/:id/flashcard", withAuth, async (req, res) => {
+//   try {
+//     let dbFlashcard = await Deck.findByPk({
+//       where: {
+//         id: req.params.id,
+//       },
+//       attributes: ["id", "title"],
+//       include: [
+//         {
+//           model: Card,
+//           attributes: ["id", "user_id", "deck_id", "front_text", "back_text"],
+//         },
+//       ],
+//     });
+//     const flashcard = dbFlashcard.map((x) => x.get({ plain: true }));
+//     res.render("flashcard", { flashcard, loggedIn: true });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
 router.get("/:id/flashcard", withAuth, async (req, res) => {
   try {
-    let dbFlashcard = await Deck.findByPk({
+    let dbFlashcard = await Card.findAll({
       where: {
-        id: req.params.id,
+        deck_id: req.params.id,
       },
-      attributes: ["id", "title"],
       include: [
         {
-          model: Card,
-          attributes: ["id", "user_id", "deck_id", "front_text", "back_text"],
+          model: Deck,
+        },
+        {
+          model: User,
         },
       ],
     });
