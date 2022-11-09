@@ -177,7 +177,7 @@
 
 
 
-<div id="homepageCarousel" class="carousel slide my-4" data-bs-ride="false">
+<div id="homepageCarousel" class="carousel slide" data-bs-ride="false">
   <div class="carousel-indicators">
     {{#each decks as |deck|}}
     <button type="button" data-bs-target="#homepageCarousel" data-bs-slide-to="{{@index}}" class="{{#if (is_zero @index)}}active{{/if}}" aria-current="true" aria-label="Slide {{inc @index}}"></button>
