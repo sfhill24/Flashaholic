@@ -273,3 +273,9 @@ color: orange;
   width: 15%;
   height:10%;
 }
+
+
+.justify-content-around {
+  justify-content: space-around !important;
+  margin-top: 9%;
+}

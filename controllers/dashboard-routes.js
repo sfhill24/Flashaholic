@@ -3,7 +3,6 @@ const sequelize = require("../config/connection");
 const { User, Deck, Card, Favorite } = require("../models");
 const withAuth = require("../middleware/isAuthenticated");
 
-
 //Get decks user created and favored
 router.get("/", withAuth, async (req, res) => {
   try {
@@ -11,13 +10,7 @@ router.get("/", withAuth, async (req, res) => {
       where: {
         user_id: req.session.currentUser.id,
       },
-      attributes: [
-        "id",
-        "title",
-        "created_at",
-        "user_id",
-        "is_public"
-      ],
+      attributes: ["id", "title", "created_at", "user_id", "is_public"],
       include: [
         {
           model: Card,
@@ -25,7 +18,7 @@ router.get("/", withAuth, async (req, res) => {
         },
         {
           model: User,
-          attributes: ["username"],
+          attributes: ["username", "id"],
         },
         {
           model: Favorite,
@@ -38,24 +31,28 @@ router.get("/", withAuth, async (req, res) => {
       where: {
         user_id: req.session.currentUser.id,
       },
-      attributes: [
-        "id",
-        "user_id",
-        "deck_id"
-      ],
+      attributes: ["id", "user_id", "deck_id"],
       include: [
         {
           model: Deck,
           attributes: ["id", "title", "created_at", "user_id", "is_public"],
-          include: [{
-            model: Card,
-            attributes: ["id", "user_id", "deck_id", "front_text", "back_text"],
-          },
-          {
-            model: User,
-            attributes: ["username"]
-          }]
-        }
+          include: [
+            {
+              model: Card,
+              attributes: [
+                "id",
+                "user_id",
+                "deck_id",
+                "front_text",
+                "back_text",
+              ],
+            },
+            {
+              model: User,
+              attributes: ["username"],
+            },
+          ],
+        },
       ],
     });
 
@@ -69,13 +66,13 @@ router.get("/", withAuth, async (req, res) => {
       decks,
       currentUserId: req.session.currentUser.id,
       loggedIn: true,
+      currentUserId: req.session.currentUser.id,
     });
-  }
-  catch (err) {
+  } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
-})
+});
 
 router.get("/edit/:id", withAuth, (req, res) => {
   Deck.findByPk(req.params.id, {
