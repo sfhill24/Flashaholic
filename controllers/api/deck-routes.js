@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Card, Deck, Favorite, User } = require("../../models");
 const withAuth = require("../../middleware/isAuthenticated");
+var validator = require('validator');
 
 //POST decks to favorites and myDecks page when save button is clicked
 router.post("/:id/favorites", withAuth, async (req, res) => {
@@ -20,6 +21,10 @@ router.post("/:id/favorites", withAuth, async (req, res) => {
 //POST deck once created
 router.post("/", withAuth, async (req, res) => {
   try {
+    if (validator.isEmpty(req.body.title)) {
+      throw "Deck must have a title"
+    }
+
     let createDeck = await Deck.create({
       title: req.body.title,
       is_public: req.body.is_public,

@@ -15,7 +15,7 @@ router.get("/", withAuth, async (req, res) => {
         },
         {
           model: Card,
-          attributes: ["deck_id"]
+          attributes: ["id", "user_id", "deck_id", "front_text", "back_text"]
         },
         {
           model: User,
@@ -26,12 +26,17 @@ router.get("/", withAuth, async (req, res) => {
 
     const allDecks = dbAllDecks.map((x) => x.get({ plain: true }));
     for (let i = 0; i < allDecks.length; i++) {
-
       if (allDecks[i].user_id == req.session.currentUser.id) {
         allDecks[i].isOwner = true;
+      } else {
+        allDecks[i].isOwner = false;
+      }
+
+      if (allDecks[i].favorites.find(fav => fav.user_id == req.session.currentUser.id) != undefined) {
+        allDecks[i].isFavorited = true;
       }
       else {
-        allDecks[i].isOwner = false;
+        allDecks[i].isFavorited = false;
       }
 
       if (allDecks[i].favorites.find(fav => fav.user_id == req.session.currentUser.id) != undefined) {
@@ -95,11 +100,12 @@ router.get("/:id", withAuth, async (req, res) => {
         },
       ],
     });
-    const flashcards = dbFlashcard.dataValues.cards.map((x) => x.get({ plain: true }));
+    const flashcards = dbFlashcard.dataValues.cards.map((x) =>
+      x.get({ plain: true })
+    );
     const deckTitle = dbFlashcard.dataValues.title;
     const id = dbFlashcard.id;
     res.render("flashcard", { flashcards, deckTitle, id, loggedIn: true });
-
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
