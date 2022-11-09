@@ -150,7 +150,7 @@ a .nav-link {
 }
 
 #cards-div {
-  margin-top: 9%;
+  margin-top: 1%;
 }
 
 #deckTitle {
@@ -232,7 +232,7 @@ a .nav-link {
 }
 
 #homepageCarousel {
-  margin-top: 9%;
+  margin-top: 1%;
 }
 
 .carousel-control-next,
@@ -245,7 +245,7 @@ a .nav-link {
 }
 
 .dashboard-container {
-  margin-top: 3%;
+  margin-top: 1%;
 }
 
 .delete-btn, .favBtn {
@@ -276,5 +276,5 @@ color: orange;
 
 .justify-content-around {
   justify-content: space-around !important;
-  margin-top: 3%;
+  margin-top: 1%;
 }
