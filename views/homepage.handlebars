@@ -102,7 +102,7 @@
                 <p class="card-text">
                     Created on {{format_date created_at}}
                 </p>
-                <a href="/deck/{{id}}">View Deck</a>
+                <a href="/decks/{{id}}">View Deck</a>
             </label>
             {{/each}}
         </div>
@@ -189,7 +189,7 @@
       <img src="/assets/imgs/project-2-bg.png" class="d-block w-100 mx-auto" alt="water-colour-background">
       <h1 class="centered text-light">{{title}}</h1>
       <div class="carousel-caption d-none d-sm-block bottom-right">
-        <p>{{user.username}}  |  {{cards.length}} {{format_plural "card" cards.length}}  |  <a href="/deck/{{id}}" class="">view deck</a></p>
+        <p>{{user.username}}  |  {{cards.length}} {{format_plural "card" cards.length}}  |  <a href="/decks/{{id}}" class="">view deck</a></p>
       </div>
     </div>
     {{/each}}
