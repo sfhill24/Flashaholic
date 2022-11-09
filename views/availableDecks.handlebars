@@ -3,15 +3,14 @@
       <h2 class="text-center mb-3 display-4">Available Decks</h2>
     <div class="row">
         {{#each allDecks}}
-
         <div class="card col-12 col-sm-6 col-md-4 img-fluid p-0 mb-2">
             <img src="/assets/imgs/project-2-bg.png" class="card-img-top" alt="back-and-orange-swirl"
                 style="width:100%">
             <div class="card-img-overlay d-flex align-items-center">
                 <div class="mx-auto">
-                    <h3 class="text-light text-center">{{this.title}}</h3>
-                    <p class="card-text text-light">{{this.user.username}} |
-                        {{this.cards.length}} {{format_plural "card" this.cards.length}} |
+                    <h3 class="text-light text-center">{{title}}</h3>
+                    <p class="card-text text-light">{{user.username}} |
+                        {{cards.length}} {{format_plural "card" cards.length}} |
                         <a href="/decks/{{id}}" class="">view deck</a> 
                     </p>
                 </div>
