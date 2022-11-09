@@ -1,8 +1,9 @@
-<section class="container">
+<section class="container p-3 dashboard-container">
     {{#if allDecks.length}}
-    <div class="row">
+    <h2 class="text-center mb-3 display-4">Publicly Available Decks</h2>
+    <div class="row p-3">
         {{#each allDecks}}
-        <div class="card text-center col-12 col-md-4 mx-2 px-0">
+        {{!-- <div class="card text-center col-12 col-md-4 mx-2 px-0">
             <div class="card-header">
                 <h3>{{this.title}}</h3>
             </div>
@@ -16,6 +17,22 @@
                 {{/if}}
             </div>
 
+        </div> --}}
+        <div class="card col-12 col-sm-6 col-md-4 img-fluid p-0 mb-2">
+            <img src="/assets/imgs/project-2-bg.png" class="card-img-top" alt="back-and-orange-swirl" style="width:100%">
+            <div class="card-img-overlay d-flex align-items-center">
+                <div class="mx-auto">
+                    <h3 class="text-light text-center">{{this.title}}</h3>
+                    <p class="card-text text-light">{{user.username}}  |  
+                        {{this.cards.length}} {{format_plural "card" allDecks.length}}  |  
+                        <a href="/decks/{{id}}" class="">view deck</a>  |
+                        {{#if this.isOwner}}
+                        your deck
+                        {{else}}
+                            <button data-deck-id={{this.id}} class="btn btn-link p-0 pb-1 favBtn">save deck</button>
+                        {{/if}}</p>
+                </div>
+            </div>
         </div>
         {{/each}}
     </div>
