@@ -245,7 +245,7 @@ a .nav-link {
 }
 
 .dashboard-container {
-  margin-top: 9%;
+  margin-top: 3%;
 }
 
 .delete-btn, .favBtn {
@@ -269,3 +269,7 @@ color: orange;
   color: orange;
 }
 
+.logo {
+  width: 15%;
+  height:10%;
+}
