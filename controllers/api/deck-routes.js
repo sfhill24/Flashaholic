@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { Card, Deck, Favorite, User } = require("../../models");
 const withAuth = require("../../middleware/isAuthenticated");
 
-//POST decks to favorites when save button is clicked
+//POST decks to favorites and myDecks page when save button is clicked
 router.post("/:id/favorites", withAuth, async (req, res) => {
   try {
     let favoriteDeck = await Favorite.create({

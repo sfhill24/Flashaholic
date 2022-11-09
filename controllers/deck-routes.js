@@ -8,10 +8,20 @@ router.get("/", withAuth, async (req, res) => {
     let dbAllDecks = await Deck.findAll({
       where: { is_public: true },
 
-      attributes: ["id", "title", "is_public"],
+      attributes: ["id", "title", "is_public", "user_id"],
     });
 
     const allDecks = dbAllDecks.map((x) => x.get({ plain: true }));
+    for (let i = 0; i < allDecks.length; i++) {
+
+      if (allDecks[i].user_id == req.session.currentUser.id) {
+        allDecks[i].isOwner = true;
+      }
+      else {
+        allDecks[i].isOwner = false;
+      }
+    }
+
     res.render("availableDecks", { allDecks, loggedIn: true });
   } catch (err) {
     console.log(err);

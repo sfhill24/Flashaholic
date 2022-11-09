@@ -10,7 +10,10 @@
                 <p class="card-text">
                     {{allDecks.length}} {{format_plural "card" allDecks.length}} in this Deck
                 </p>
-                <button data-deck-id={{this.id}} class="btn btn-primary favBtn">Save to My Decks</button>
+                {{#if this.isOwner}}
+                {{else}}
+                    <button data-deck-id={{this.id}} class="btn btn-primary favBtn">Save to My Decks</button>
+                {{/if}}
             </div>
 
         </div>

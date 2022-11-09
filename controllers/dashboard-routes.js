@@ -16,13 +16,7 @@ router.get("/", withAuth, async (req, res) => {
         "title",
         "created_at",
         "user_id",
-        "is_public",
-        //   [
-        //     sequelize.literal(
-        //       `(SELECT COUNT(*) FROM favorite WHERE deck.id = favorite.deck_id)`
-        //     ),
-        //     "favorite_count",
-        //   ],
+        "is_public"
       ],
       include: [
         {
@@ -63,8 +57,8 @@ router.get("/", withAuth, async (req, res) => {
 
     const userDecks = dbDeckData.map((deck) => deck.get({ plain: true }));
     const favs = dbFavs.map((fav) => fav.get({ plain: true }));
-    const favDecks = favs.map((fav) => fav.deck);
 
+    const favDecks = favs.map((fav) => fav.deck);
     const decks = userDecks.concat(favDecks);
 
     res.render("dashboard", {
@@ -77,12 +71,6 @@ router.get("/", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 })
-
-
-
-
-
-
 
 router.get("/edit/:id", withAuth, (req, res) => {
   Deck.findByPk(req.params.id, {
