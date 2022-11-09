@@ -61,6 +61,29 @@ router.delete("/:id", withAuth, async (req, res) => {
   }
 });
 
+// GET flashcard deck info
+router.get("/cards/:id", withAuth, async (req, res) => {
+  try {
+    let dbFlashcard = await Deck.findOne({
+      where: {
+        id: req.params.id,
+      },
+      attributes: ["id", "title"],
+      include: [
+        {
+          model: Card,
+          attributes: ["id", "user_id", "deck_id", "front_text", "back_text"],
+        },
+      ],
+    });
+    res.json(dbFlashcard);
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 //DELETE favorite deck
 // router.delete("/favorite/:id", withAuth, async (req, res) => {
 //   try {
