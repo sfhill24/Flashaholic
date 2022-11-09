@@ -21,7 +21,7 @@ body {
 }
 
 body {
-  font-family: "DM Sans", sans-serif;
+  font-family: 'Quicksand', sans-serif;
   transition: background 0.4s ease-in;  
 }
 
@@ -240,4 +240,13 @@ a .nav-link {
 
 .dashboard-container {
   margin-top: 9%;
+}
+
+.delete-btn {
+  text-decoration: none;
+  color: white;
+}
+
+.delete-btn:hover {
+  color: white;
 }
