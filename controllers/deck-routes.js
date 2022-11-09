@@ -15,12 +15,12 @@ router.get("/", withAuth, async (req, res) => {
         },
         {
           model: Card,
-          attributes: ["id", "user_id", "deck_id", "front_text", "back_text"]
+          attributes: ["id", "user_id", "deck_id", "front_text", "back_text"],
         },
         {
           model: User,
-          attributes: ["username"]
-        }
+          attributes: ["username"],
+        },
       ],
     });
 
@@ -32,17 +32,23 @@ router.get("/", withAuth, async (req, res) => {
         allDecks[i].isOwner = false;
       }
 
-      if (allDecks[i].favorites.find(fav => fav.user_id == req.session.currentUser.id) != undefined) {
+      if (
+        allDecks[i].favorites.find(
+          (fav) => fav.user_id == req.session.currentUser.id
+        ) != undefined
+      ) {
         allDecks[i].isFavorited = true;
-      }
-      else {
+      } else {
         allDecks[i].isFavorited = false;
       }
 
-      if (allDecks[i].favorites.find(fav => fav.user_id == req.session.currentUser.id) != undefined) {
+      if (
+        allDecks[i].favorites.find(
+          (fav) => fav.user_id == req.session.currentUser.id
+        ) != undefined
+      ) {
         allDecks[i].isFavorited = true;
-      }
-      else {
+      } else {
         allDecks[i].isFavorited = false;
       }
     }
@@ -64,28 +70,6 @@ router.get("/create", withAuth, async (req, res) => {
   }
 });
 
-//GET deck and render flashcard page
-// router.get("/:id/flashcard", withAuth, async (req, res) => {
-//   try {
-//     let dbFlashcard = await Deck.findByPk({
-//       where: {
-//         id: req.params.id,
-//       },
-//       attributes: ["id", "title"],
-//       include: [
-//         {
-//           model: Card,
-//           attributes: ["id", "user_id", "deck_id", "front_text", "back_text"],
-//         },
-//       ],
-//     });
-//     const flashcard = dbFlashcard.map((x) => x.get({ plain: true }));
-//     res.render("flashcard", { flashcard, loggedIn: true });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
 router.get("/:id", withAuth, async (req, res) => {
   try {
     let dbFlashcard = await Deck.findOne({
