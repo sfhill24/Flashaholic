@@ -219,3 +219,12 @@ a .nav-link {
 .dashboard-container {
   margin-top: 9%;
 }
+
+.delete-btn {
+  text-decoration: none;
+  color: white;
+}
+
+.delete-btn:hover {
+  color: white;
+}

@@ -3,7 +3,10 @@
       <div class="card-img-overlay d-flex align-items-center">
         <div class="mx-auto">
             <h3 class="text-light text-center">{{title}}</h3>
-            <p class="card-text text-light">{{user.username}}  |  {{cards.length}} {{format_plural "card" cards.length}}  |  <a href="/deck/{{id}}" class="">view deck</a></p>
+            <p class="card-text text-light">{{user.username}}  |  
+                {{cards.length}} {{format_plural "card" cards.length}}  |  
+                <a href="/deck/{{id}}" class="">view deck</a>  |
+                <button class="btn btn-link delete-btn p-0" data-deck-id="{{id}}">delete deck</button></p>
         </div>
       </div>
 </div>
