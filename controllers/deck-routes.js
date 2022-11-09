@@ -63,7 +63,7 @@ router.get("/create", withAuth, async (req, res) => {
 // });
 router.get("/:id", withAuth, async (req, res) => {
   try {
-    let dbFlashcard = await Deck.findAll({
+    let dbFlashcard = await Deck.findOne({
       where: {
         id: req.params.id,
       },
