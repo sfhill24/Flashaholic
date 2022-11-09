@@ -140,7 +140,7 @@
   left: 25%;
 }
 
-.card {
+.deck-card {
   position: absolute;
   top: 45%;
   left: 50%;
@@ -190,6 +190,7 @@
   margin-top: 9%;
 }
 
-span .carousel-control-next-icon {
-  color: grey;
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+    filter: invert(100%);
 }
