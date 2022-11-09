@@ -84,11 +84,12 @@ router.get("/cards/:id", withAuth, async (req, res) => {
 });
 
 //DELETE favorite deck
-router.delete("/favorite/:id", withAuth, async (req, res) => {
+router.delete("/:id/favorites", withAuth, async (req, res) => {
   try {
     let deleteFavoriteDeck = await Favorite.destroy({
       where: {
-        id: req.params.id,
+        deck_id: req.params.id,
+        user_id: req.session.currentUser.id
       },
     });
     if (!deleteFavoriteDeck) {

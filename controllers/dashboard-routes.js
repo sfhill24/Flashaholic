@@ -50,6 +50,10 @@ router.get("/", withAuth, async (req, res) => {
           include: [{
             model: Card,
             attributes: ["id", "user_id", "deck_id", "front_text", "back_text"],
+          },
+          {
+            model: User,
+            attributes: ["username"]
           }]
         }
       ],
@@ -63,6 +67,7 @@ router.get("/", withAuth, async (req, res) => {
 
     res.render("dashboard", {
       decks,
+      currentUserId: req.session.currentUser.id,
       loggedIn: true,
     });
   }
