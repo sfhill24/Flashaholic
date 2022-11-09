@@ -7,18 +7,21 @@ router.get("/", withAuth, async (req, res) => {
   try {
     let dbAllDecks = await Deck.findAll({
       where: { is_public: true },
+      attributes: ["id", "title", "is_public", "user_id"],
       include: [
         {
+          model: Favorite,
+          attributes: ["id", "user_id", "deck_id"],
+        },
+        {
           model: Card,
-          attributes: ["id", "user_id", "deck_id", "front_text", "back_text"],
+          attributes: ["id", "user_id", "deck_id", "front_text", "back_text"]
         },
         {
           model: User,
-          attributes: ["username"],
-        },
+          attributes: ["username"]
+        }
       ],
-
-      attributes: ["id", "title", "is_public", "user_id"],
     });
 
     const allDecks = dbAllDecks.map((x) => x.get({ plain: true }));
@@ -27,6 +30,20 @@ router.get("/", withAuth, async (req, res) => {
         allDecks[i].isOwner = true;
       } else {
         allDecks[i].isOwner = false;
+      }
+
+      if (allDecks[i].favorites.find(fav => fav.user_id == req.session.currentUser.id) != undefined) {
+        allDecks[i].isFavorited = true;
+      }
+      else {
+        allDecks[i].isFavorited = false;
+      }
+
+      if (allDecks[i].favorites.find(fav => fav.user_id == req.session.currentUser.id) != undefined) {
+        allDecks[i].isFavorited = true;
+      }
+      else {
+        allDecks[i].isFavorited = false;
       }
     }
 

@@ -12,6 +12,11 @@ async function favoriteDeck(event) {
     });
 
   if (response.ok) {
+    const solidFavBtn = document.querySelector(`[data-deck-id="${id}"]`);
+    solidFavBtn.classList.add("fa-solid");
+    solidFavBtn.classList.add("favBtnOn");
+    solidFavBtn.classList.remove("fa-regular");
+  
   } else {
     alert(response.statusText);
   }

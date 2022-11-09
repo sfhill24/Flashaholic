@@ -47,11 +47,11 @@ router.get("/", withAuth, async (req, res) => {
                 "back_text",
               ],
             },
+            {
+              model: User,
+              attributes: ["username"],
+            },
           ],
-        },
-        {
-          model: User,
-          attributes: ["username", "id"],
         },
       ],
     });
@@ -64,6 +64,7 @@ router.get("/", withAuth, async (req, res) => {
 
     res.render("dashboard", {
       decks,
+      currentUserId: req.session.currentUser.id,
       loggedIn: true,
       currentUserId: req.session.currentUser.id,
     });

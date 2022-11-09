@@ -1,6 +1,6 @@
-<section class="container dashboard-container p-3" data-current-user="{{currentUserId}}">
+<section class="container dashboard-container p-3" >
     {{#if decks.length}}
-        <h2 class="text-center mb-3 display-4">Your Decks</h2>
+        <h2 class="text-center mb-3 display-4">My Decks</h2>
         <div class="row p-3">
             {{#each decks as |deck|}}
                 {{>deck-partial deck}}
@@ -9,6 +9,7 @@
     {{else}}
         <h2>You have not created any decks</h2>
     {{/if}}
+    <p data-current-user-id={{currentUserId}}></p>
 </section>
 
 <script src="/javascript/dashboard.js"></script>
