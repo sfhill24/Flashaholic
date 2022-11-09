@@ -1,50 +1,53 @@
-<section>
-  <form id="createDeck">
-    <!--Deck name with text box--->
-    <!--Private/public check box-->
-    <div class="input-group">
-      <input name="title" type="text" class="form-control" placeholder="Deck Name" aria-label="Deck Name"
-        aria-describedby="btnGroupAddon">
-    </div>
-
-    </div>
-
-    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-      <input type="radio" class="btn-check" name="is_public" id="btnradio1" autocomplete="off">
-      <label class="btn btn-outline-primary" for="btnradio1">Public</label>
-
-      <input type="radio" class="btn-check" name="is_public" id="btnradio2" autocomplete="off" checked>
-      <label class="btn btn-outline-primary" for="btnradio2">Private</label>
-
-    </div>
-
-    <!--Question/Answer textbox-->
-    <div class="input-group flex-nowrap">
-      <input name="front_text" type="text" class="form-control" placeholder="Question" aria-label="Answer"
-        aria-describedby="addon-wrapping">
-    </div>
-
-    <div class="input-group flex-nowrap">
-      <input name="back_text" type="text" class="form-control" placeholder="Answer" aria-label="Answer"
-        aria-describedby="addon-wrapping">
-    </div>
-
-    <!--Add card button-->
-    <button id="addCardBtn" type="button" class="btn btn-primary">Add Card</button>
-
-    <!--list of cards layout (append)-->
-    <div id="listOfCards">
+<div class="container dashboard-container">
+    <h2 class="mb-3 text-center display-4">Create a Deck</h2>
+    <section class="border border-dark rounded p-4">
+    <form id="createDeck">
+      <!--Deck name with text box--->
+      <!--Private/public check box-->
+      <div class="input-group mb-3">
+        <input name="title" type="text" class="form-control" placeholder="Deck Name" aria-label="Deck Name"
+          aria-describedby="btnGroupAddon">
+      </div>
 
 
-    </div>
+      <div class="btn-group mb-3 mr-2" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" name="is_public" id="btnradio1" autocomplete="off">
+        <label class="btn btn-outline-dark" for="btnradio1">Public</label>
 
-    <!--Delete card button-->
-    <i id="deleteCard" class="fa-solid fa-trash-can"></i>
+        <input type="radio" class="btn-check" name="is_public" id="btnradio2" autocomplete="off" checked>
+        <label class="btn btn-outline-dark" for="btnradio2">Private</label>
 
-    <!--Save button -->
-    <input type="submit" class="btn btn-primary" value="Save Deck" />
+      </div>
 
-  </form>
+      <!--Question/Answer textbox-->
+      <div class="input-group flex-nowrap mb-3">
+        <input name="cardQuestion" id="cardQuestion1" type="text" class="form-control" placeholder="Question" aria-label="Answer"
+          aria-describedby="addon-wrapping">
+      </div>
 
-</section>
+      <div class="input-group flex-nowrap mb-3">
+        <input name="cardAnswer" type="text" class="form-control" placeholder="Answer" aria-label="Answer"
+          aria-describedby="addon-wrapping">
+      </div>
+
+      <!--Add card button-->
+      <button id="addCardBtn" type="button" class="btn btn-dark mb-3">Add Card</button>
+
+      <!--list of cards layout (append)-->
+      <div id="listOfCards">
+
+
+      </div>
+
+      <!--Delete card button-->
+      {{!-- <i id="deleteCard" class="fa-solid fa-trash-can"></i> --}}
+
+      <!--Save button -->
+      <input type="submit" class="btn btn-dark" value="Save Deck" />
+
+    </form>
+
+  </section>
+
+</div>
 <script src="/javascript/createDeck.js"></script>

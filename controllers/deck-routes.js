@@ -7,17 +7,25 @@ router.get("/", withAuth, async (req, res) => {
   try {
     let dbAllDecks = await Deck.findAll({
       where: { is_public: true },
+      include: [
+        {
+          model: Card,
+          attributes: ["id", "user_id", "deck_id", "front_text", "back_text"],
+        },
+        {
+          model: User,
+          attributes: ["username"],
+        },
+      ],
 
       attributes: ["id", "title", "is_public", "user_id"],
     });
 
     const allDecks = dbAllDecks.map((x) => x.get({ plain: true }));
     for (let i = 0; i < allDecks.length; i++) {
-
       if (allDecks[i].user_id == req.session.currentUser.id) {
         allDecks[i].isOwner = true;
-      }
-      else {
+      } else {
         allDecks[i].isOwner = false;
       }
     }
@@ -75,11 +83,12 @@ router.get("/:id", withAuth, async (req, res) => {
         },
       ],
     });
-    const flashcards = dbFlashcard.dataValues.cards.map((x) => x.get({ plain: true }));
+    const flashcards = dbFlashcard.dataValues.cards.map((x) =>
+      x.get({ plain: true })
+    );
     const deckTitle = dbFlashcard.dataValues.title;
     const id = dbFlashcard.id;
     res.render("flashcard", { flashcards, deckTitle, id, loggedIn: true });
-
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
