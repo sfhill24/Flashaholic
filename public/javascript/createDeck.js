@@ -43,20 +43,22 @@ async function createDeck(event) {
 const addCard = async () => {
   event.preventDefault();
 
-  const question = document.querySelector('input[name="cardQuestion"]').value;
-  const answer = document.querySelector('input[name="cardAnswer"]').value;
+  const question = document.querySelector('input[name="cardQuestion"]');
+  const answer = document.querySelector('input[name="cardAnswer"]');
 
   const cardListDiv = document.createElement("div");
   cardListDiv.innerHTML = `<div class="input-group flex-nowrap mb-3">
   <input name="cardQuestion" type="text" class="form-control" placeholder="Question" aria-label="Answer"
-    aria-describedby="addon-wrapping" value="${question}">
+    aria-describedby="addon-wrapping" value="${question.value}">
 </div>
 <div class="input-group flex-nowrap mb-3">
   <input name="cardAnswer" type="text" class="form-control" placeholder="Answer" aria-label="Answer"
-    aria-describedby="addon-wrapping" value="${answer}">
+    aria-describedby="addon-wrapping" value="${answer.value}">
 </div>`;
 
   document.querySelector("#listOfCards").appendChild(cardListDiv);
+  question.value = "";
+  answer.value = "";
 };
 
 document.querySelector("#createDeck").addEventListener("submit", createDeck);

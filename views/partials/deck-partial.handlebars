@@ -6,7 +6,7 @@
             <p class="card-text text-light">{{user.username}}  |  
                 {{cards.length}} {{format_plural "card" cards.length}}  |  
                 <a href="/decks/{{id}}" class="">view deck</a>  |
-                <button class="btn btn-link delete-btn p-0 pb-1" data-deck-id="{{id}}">delete deck</button></p>
+                <button class="btn btn-link delete-btn p-0 pb-1" data-deck-user-id={{user_id}} data-deck-id="{{id}}">delete deck</button></p>
         </div>
       </div>
 </div>

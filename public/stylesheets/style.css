@@ -256,3 +256,16 @@ a .nav-link {
 .delete-btn:hover, .favBtn:hover {
   color: white;
 }
+
+.favBtn:hover {
+color: orange;
+}
+
+.favBtn-position {
+  margin-top: 800%;
+}
+
+.favBtnOn {
+  color: orange;
+}
+
