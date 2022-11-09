@@ -66,8 +66,9 @@ router.get("/:id", withAuth, async (req, res) => {
       ],
     });
     const flashcards = dbFlashcard.dataValues.cards.map((x) => x.get({ plain: true }));
-    
-    res.render("flashcard", { flashcards , loggedIn: true });
+    const deckTitle = dbFlashcard.dataValues.title;
+    const id = dbFlashcard.id;
+    res.render("flashcard", { flashcards, deckTitle, id, loggedIn: true });
 
   } catch (err) {
     console.log(err);
