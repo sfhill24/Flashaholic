@@ -3,53 +3,86 @@ const sequelize = require("../config/connection");
 const { User, Deck, Card, Favorite } = require("../models");
 const withAuth = require("../middleware/isAuthenticated");
 
-router.get("/", withAuth, (req, res) => {
-  console.log(req.session);
 
-  Deck.findAll({
-    where: {
-      user_id: req.session.currentUser.id,
-    },
-    attributes: [
-      "id",
-      "title",
-      "created_at",
-      "user_id",
-      "is_public",
-      //   [
-      //     sequelize.literal(
-      //       `(SELECT COUNT(*) FROM favorite WHERE deck.id = favorite.deck_id)`
-      //     ),
-      //     "favorite_count",
-      //   ],
-    ],
-    include: [
-      {
-        model: Card,
-        attributes: ["id", "user_id", "deck_id", "front_text", "back_text"],
+//Get decks user created and favored
+router.get("/", withAuth, async (req, res) => {
+  try {
+    let dbDeckData = await Deck.findAll({
+      where: {
+        user_id: req.session.currentUser.id,
       },
-      {
-        model: User,
-        attributes: ["username"],
-      },
-      {
-        model: Favorite,
-        attributes: ["user_id", "deck_id"],
-      },
-    ],
-  })
-    .then((dbDeckData) => {
-      const decks = dbDeckData.map((deck) => deck.get({ plain: true }));
-      res.render("dashboard", {
-        decks,
-        loggedIn: true,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
+      attributes: [
+        "id",
+        "title",
+        "created_at",
+        "user_id",
+        "is_public",
+        //   [
+        //     sequelize.literal(
+        //       `(SELECT COUNT(*) FROM favorite WHERE deck.id = favorite.deck_id)`
+        //     ),
+        //     "favorite_count",
+        //   ],
+      ],
+      include: [
+        {
+          model: Card,
+          attributes: ["id", "user_id", "deck_id", "front_text", "back_text"],
+        },
+        {
+          model: User,
+          attributes: ["username"],
+        },
+        {
+          model: Favorite,
+          attributes: ["user_id", "deck_id"],
+        },
+      ],
     });
-});
+
+    let dbFavs = await Favorite.findAll({
+      where: {
+        user_id: req.session.currentUser.id,
+      },
+      attributes: [
+        "id",
+        "user_id",
+        "deck_id"
+      ],
+      include: [
+        {
+          model: Deck,
+          attributes: ["id", "title", "created_at", "user_id", "is_public"],
+          include: [{
+            model: Card,
+            attributes: ["id", "user_id", "deck_id", "front_text", "back_text"],
+          }]
+        }
+      ],
+    });
+
+    const userDecks = dbDeckData.map((deck) => deck.get({ plain: true }));
+    const favs = dbFavs.map((fav) => fav.get({ plain: true }));
+    const favDecks = favs.map((fav) => fav.deck);
+
+    const decks = userDecks.concat(favDecks);
+
+    res.render("dashboard", {
+      decks,
+      loggedIn: true,
+    });
+  }
+  catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+})
+
+
+
+
+
+
 
 router.get("/edit/:id", withAuth, (req, res) => {
   Deck.findByPk(req.params.id, {

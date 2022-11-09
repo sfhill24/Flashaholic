@@ -43,7 +43,6 @@ router.post("/", withAuth, async (req, res) => {
 
 //DELETE created deck
 router.delete("/:id", withAuth, async (req, res) => {
-  console.log("hit ------------------");
   try {
     let deleteCreatedDeck = await Deck.destroy({
       where: {
