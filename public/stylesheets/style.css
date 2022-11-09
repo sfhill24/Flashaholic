@@ -149,6 +149,10 @@ a .nav-link {
   left: 40%;
 }
 
+#cards-div {
+  margin-top: 9%;
+}
+
 #deckTitle {
   display: flex;
   color: white;
