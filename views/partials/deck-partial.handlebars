@@ -1,9 +1,12 @@
-<div class="card col col-sm-6 col-md-4 img-fluid p-0 mx-3">
+<div class="card col-12 col-sm-6 col-md-4 img-fluid p-0 mb-2">
         <img src="/assets/imgs/project-2-bg.png" class="card-img-top" alt="back-and-orange-swirl" style="width:100%">
       <div class="card-img-overlay d-flex align-items-center">
         <div class="mx-auto">
-            <h1 class="text-light text-center">{{title}}</h1>
-            <p class="card-text text-light">{{user.username}}  |  {{cards.length}} {{format_plural "card" cards.length}}  |  <a href="/deck/{{id}}" class="">view deck</a></p>
+            <h3 class="text-light text-center">{{title}}</h3>
+            <p class="card-text text-light">{{user.username}}  |  
+                {{cards.length}} {{format_plural "card" cards.length}}  |  
+                <a href="/deck/{{id}}" class="">view deck</a>  |
+                <button class="btn btn-link delete-btn p-0" data-deck-id="{{id}}">delete deck</button></p>
         </div>
       </div>
 </div>
