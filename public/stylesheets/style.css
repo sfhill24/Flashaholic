@@ -269,3 +269,7 @@ color: orange;
   color: orange;
 }
 
+.justify-content-around {
+  justify-content: space-around !important;
+  margin-top: 9%;
+}
