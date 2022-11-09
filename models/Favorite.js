@@ -22,7 +22,7 @@ Favorite.init(
     deck_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "user",
+        model: "deck",
         key: "id",
       },
     },
