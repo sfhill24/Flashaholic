@@ -14,10 +14,13 @@
     </div>
 </div> --}}
 
-<div class="card col-4 img-fluid">
+<div class="card col-4 img-fluid p-0">
         <img src="/assets/imgs/project-2-bg.png" class="card-img-top" alt="back-and-orange-swirl" style="width:100%">
-      <div class="card-img-overlay d-block mx-auto">
-        <h1 class="text-light">{{title}}</h1>
+      <div class="card-img-overlay d-flex align-items-center">
+        <div class="mx-auto">
+            <h1 class="text-light">{{title}}</h1>
         <p class="card-text text-light">{{user.username}}  |  {{cards.length}} {{format_plural "card" cards.length}}  |  <a href="/deck/{{id}}" class="">view deck</a></p>
+        </div>
+        
       </div>
 </div>

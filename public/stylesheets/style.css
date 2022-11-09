@@ -211,3 +211,11 @@ a .nav-link {
 .carousel-control-prev /*, .carousel-indicators */ {
     filter: invert(100%);
 }
+
+.card-img-top {
+  height: 100%;
+}
+
+.dashboard-container {
+  margin-top: 9%;
+}
