@@ -250,3 +250,16 @@ a .nav-link {
 .delete-btn:hover {
   color: white;
 }
+
+.favBtn:hover {
+color: orange;
+}
+
+.favBtn-position {
+  margin-top: 200px;
+}
+
+.favBtnOn {
+  color: orange;
+}
+
