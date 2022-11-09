@@ -76,19 +76,7 @@ router.get("/", withAuth, async (req, res) => {
 
 router.get("/edit/:id", withAuth, (req, res) => {
   Deck.findByPk(req.params.id, {
-    attributes: [
-      "id",
-      "title",
-      "created_at",
-      "user_id",
-      "is_public",
-      //   [
-      //     sequelize.literal(
-      //       `(SELECT COUNT(*) FROM favorite WHERE deck.id = favorite.deck_id)`
-      //     ),
-      //     "favorite_count",
-      //   ],
-    ],
+    attributes: ["id", "title", "created_at", "user_id", "is_public"],
     include: [
       {
         model: Card,
