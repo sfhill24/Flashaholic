@@ -256,14 +256,10 @@ color: orange;
 }
 
 .favBtn-position {
-  margin-top: 200px;
+  margin-top: 800%;
 }
 
 .favBtnOn {
   color: orange;
 }
 
-.logo {
-  height: 150px;
-  width: 100px;
-}

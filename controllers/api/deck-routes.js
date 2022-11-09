@@ -84,22 +84,21 @@ router.get("/cards/:id", withAuth, async (req, res) => {
 });
 
 //DELETE favorite deck
-// router.delete("/favorite/:id", withAuth, async (req, res) => {
-//   try {
-//     let deleteFavoriteDeck = await Favorite.destroy({
-//       where: {
-//         id: req.params.id,
-//       },
-//     });
-//     if (!deleteFavoriteDeck) {
-//       res.status(404).json({ message: "ID not found" });
-//       return;
-//     }
-//     res.json(deleteFavoriteDeck);
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
+router.delete("/favorite/:id", withAuth, async (req, res) => {
+  try {
+    let deleteFavoriteDeck = await Favorite.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    if (!deleteFavoriteDeck) {
+      res.status(404).json({ message: "ID not found" }); return;
+    }
+    res.json(deleteFavoriteDeck);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;
