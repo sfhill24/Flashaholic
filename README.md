@@ -18,12 +18,14 @@
   [License](#license)
 
   [Contributing](#contributing)
+  
+  [Deployment](#deployment)
 
   [Tests](#tests)
 
   [Questions](#questions)
 
-  ## Instillation
+  ## Installation
   This project requires bcrypt, Connect-Session-Sequelize, dotenv, Express, Express-Handlebars, Express-Session, MySQL2, Nodemon, Sequelize, and Validator. If a user has downloaded this project from the GitHub repository, they would need to run "npm install" in their terminal to install all dependencies.
 
   ## Usage
@@ -35,6 +37,10 @@
   ## Contributing
   Guidelines for contributing to this project:
   There are currently no contribution guidelines for this project.
+  
+  ## Deployment
+  
+  This app is hosted on Heroku and can be found here: https://shielded-sea-30882.herokuapp.com/
 
   ## Tests
   There are currently no tests for this project.
