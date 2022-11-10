@@ -43,8 +43,8 @@ async function createDeck(event) {
 const addCard = async () => {
   event.preventDefault();
 
-  const question = document.querySelector('input[name="cardQuestion"]');
-  const answer = document.querySelector('input[name="cardAnswer"]');
+  const question = document.querySelector('input[name="front_text"]');
+  const answer = document.querySelector('input[name="back_text"]');
 
   const cardListDiv = document.createElement("div");
   cardListDiv.innerHTML = `<div class="input-group flex-nowrap mb-3">
