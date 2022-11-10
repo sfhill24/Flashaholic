@@ -1,5 +1,7 @@
 # Flashaholic
 
+![Flashaholic Site Screenshot](https://github.com/pmacdonald07/Flashaholic/raw/main/Flashaholic-screenshot.png)
+
   This project was created by:
   Aaron Fridale
   Ash Mustafa
