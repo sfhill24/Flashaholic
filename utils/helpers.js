@@ -1,7 +1,3 @@
-//Handlebars.registerHelper('json', function (content) {
-  //return JSON.stringify(content);
-//});
-
 module.exports = {
   format_date: (date) => {
     return `${new Date(date).getMonth() + 1}/${new Date(
@@ -36,5 +32,4 @@ module.exports = {
   is_zero: (value) => {
     return value === 0;
   },
-  
 };

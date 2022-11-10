@@ -7,7 +7,7 @@
 * {
     box-sizing: border-box;
   }
-  
+
 html,
 body {
   margin: 0;
@@ -22,7 +22,7 @@ body {
 
 body {
   font-family: 'Quicksand', sans-serif;
-  transition: background 0.4s ease-in;  
+  transition: background 0.4s ease-in;
 }
 
 
@@ -34,36 +34,6 @@ input[type="radio"] {
   display: none;
 }
 
-/* .homepage-card {
-  position: absolute;
-  width: 60%;
-  height: 100%;
-  left: 0;
-  right: 0;
-  margin: auto;
-  transition: transform 0.4s ease;
-  cursor: pointer;
-}
-
-.homepage-container {
-  width: 100%;
-  max-width: 800px;
-  max-height: 600px;
-  height: 100%;
-  transform-style: preserve-3d;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
-
-.cards {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  margin-bottom: 20px;
-} */
-
 img {
   width: 80%;
   height: 80%;
@@ -72,35 +42,7 @@ img {
   max-width: 800px;
   max-height: 600px;
 }
-/*   
-#item-1:checked ~ .cards #deck-3,
-#item-2:checked ~ .cards #deck-1,
-#item-3:checked ~ .cards #deck-2 {
-  transform: translatex(-40%) scale(0.8);
-  opacity: 0.4;
-  z-index: 0;
-}
 
-#item-1:checked ~ .cards #deck-2,
-#item-2:checked ~ .cards #deck-3,
-#item-3:checked ~ .cards #deck-1 {
-  transform: translatex(40%) scale(0.8);
-  opacity: 0.4;
-  z-index: 0;
-}
-
-#item-1:checked ~ .cards #deck-1,
-#item-2:checked ~ .cards #deck-2,
-#item-3:checked ~ .cards #deck-3 {
-  transform: translatex(0) scale(1);
-  opacity: 1;
-  z-index: 1;
-
-  img {
-    box-shadow: 0px 0px 5px 0px rgba(81, 81, 81, 0.47);
-  }
-}
-  */
 .centered {
   position: absolute;
   top: 50%;
@@ -150,7 +92,7 @@ a .nav-link {
 }
 
 #cards-div {
-  margin-top: 9%;
+  margin-top: 1%;
 }
 
 #deckTitle {
@@ -236,7 +178,7 @@ a .nav-link {
 }
 
 .carousel-control-next,
-.carousel-control-prev /*, .carousel-indicators */ {
+.carousel-control-prev {
     filter: invert(100%);
 }
 
@@ -245,7 +187,7 @@ a .nav-link {
 }
 
 .dashboard-container {
-  margin-top: 3%;
+  margin-top: 1%;
 }
 
 .delete-btn, .favBtn {
@@ -276,5 +218,5 @@ color: orange;
 
 .justify-content-around {
   justify-content: space-around !important;
-  margin-top: 3%;
+  margin-top: 1%;
 }
