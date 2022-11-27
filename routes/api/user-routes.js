@@ -1,8 +1,6 @@
 const router = require("express").Router();
 
 const { UserController } = require("../../controllers");
-const { User, Deck, Card } = require("../../models");
-const withAuth = require("../../middleware/isAuthenticated");
 
 // GET /api/users
 router.get("/", UserController.getAllUsers);
