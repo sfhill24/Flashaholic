@@ -1,7 +1,6 @@
 const router = require("express").Router();
-const sequelize = require("../config/connection");
 
-const { User, Deck, Card, Favorite } = require("../models");
+const { User, Deck, Card, Favorite } = require("../../models");
 
 router.get("/", (req, res) => {
   console.log(req.session);
@@ -26,14 +25,14 @@ router.get("/", (req, res) => {
       },
     ],
   })
-    .then((dbDeckData) => {
-      const decks = dbDeckData.map((deck) => deck.get({ plain: true }));
+    .then(dbDeckData => {
+      const decks = dbDeckData.map(deck => deck.get({ plain: true }));
       res.render("homepage", {
         decks,
         loggedIn: req.session.isAuthenticated,
       });
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });

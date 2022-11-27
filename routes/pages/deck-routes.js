@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const { Card, Deck, Favorite, User } = require("../models");
-const withAuth = require("../middleware/isAuthenticated");
+const { Card, Deck, Favorite, User } = require("../../models");
+const withAuth = require("../../middleware/isAuthenticated");
 
 //GET all decks and render  availableDecks page
 router.get("/", withAuth, async (req, res) => {
@@ -24,7 +24,7 @@ router.get("/", withAuth, async (req, res) => {
       ],
     });
 
-    const allDecks = dbAllDecks.map((x) => x.get({ plain: true }));
+    const allDecks = dbAllDecks.map(x => x.get({ plain: true }));
     for (let i = 0; i < allDecks.length; i++) {
       if (allDecks[i].user_id == req.session.currentUser.id) {
         allDecks[i].isOwner = true;
@@ -34,7 +34,7 @@ router.get("/", withAuth, async (req, res) => {
 
       if (
         allDecks[i].favorites.find(
-          (fav) => fav.user_id == req.session.currentUser.id
+          fav => fav.user_id == req.session.currentUser.id
         ) != undefined
       ) {
         allDecks[i].isFavorited = true;
@@ -44,7 +44,7 @@ router.get("/", withAuth, async (req, res) => {
 
       if (
         allDecks[i].favorites.find(
-          (fav) => fav.user_id == req.session.currentUser.id
+          fav => fav.user_id == req.session.currentUser.id
         ) != undefined
       ) {
         allDecks[i].isFavorited = true;
@@ -84,7 +84,7 @@ router.get("/:id", withAuth, async (req, res) => {
         },
       ],
     });
-    const flashcards = dbFlashcard.dataValues.cards.map((x) =>
+    const flashcards = dbFlashcard.dataValues.cards.map(x =>
       x.get({ plain: true })
     );
     const deckTitle = dbFlashcard.dataValues.title;

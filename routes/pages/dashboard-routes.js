@@ -1,7 +1,6 @@
 const router = require("express").Router();
-const sequelize = require("../config/connection");
-const { User, Deck, Card, Favorite } = require("../models");
-const withAuth = require("../middleware/isAuthenticated");
+const { User, Deck, Card, Favorite } = require("../../models");
+const withAuth = require("../../middleware/isAuthenticated");
 
 //Get decks user created and favored
 router.get("/", withAuth, async (req, res) => {
@@ -56,10 +55,10 @@ router.get("/", withAuth, async (req, res) => {
       ],
     });
 
-    const userDecks = dbDeckData.map((deck) => deck.get({ plain: true }));
-    const favs = dbFavs.map((fav) => fav.get({ plain: true }));
+    const userDecks = dbDeckData.map(deck => deck.get({ plain: true }));
+    const favs = dbFavs.map(fav => fav.get({ plain: true }));
 
-    const favDecks = favs.map((fav) => fav.deck);
+    const favDecks = favs.map(fav => fav.deck);
     const decks = userDecks.concat(favDecks);
 
     res.render("dashboard", {
@@ -92,7 +91,7 @@ router.get("/edit/:id", withAuth, (req, res) => {
       },
     ],
   })
-    .then((dbDeckData) => {
+    .then(dbDeckData => {
       if (dbDeckData) {
         // serialize the data
         const deck = dbDeckData.get({ plain: true });
@@ -106,7 +105,7 @@ router.get("/edit/:id", withAuth, (req, res) => {
         res.status(404).end();
       }
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
