@@ -1,6 +1,7 @@
 # Flashaholic
 
-![Flashaholic Site Screenshot](https://github.com/pmacdonald07/Flashaholic/raw/main/Flashaholic-screenshot.png)
+
+![Screenshot 2023-01-20 120100](https://user-images.githubusercontent.com/49098706/213759409-06f1ec12-4bdf-4e66-9b4f-1edab455277a.png)
 
   ## Description
 We have created an application that allows users to create and view decks of flash cards. This is intended as a flexible study tool. On the homepage users can see a carousel of publicly available decks, which a user can "favorite" to save a copy of that deck to their dashboard. Users can go to their dashboard to see all of their decks, public, and private, along with decks they have favorited. On the create a deck page, user's can create a deck of however many flashcards they please, and save that deck for future use.
